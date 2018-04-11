@@ -1,21 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import reducers from './reducers';
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
-const store = createStoreWithMiddleware(reducers);
+import Signup from '../components/signup';
+import { reducer as formReducer, } from 'redux-form';
+
+const reducers = combineReducers({
+  form: formReducer,
+});
+
+const store = createStore(reducers);
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <Provider store={store}>
       <Router>
         <div>
-          <p>My Dogs App</p>
-          <Route exact path="/" />
-          <Route path="/signup" />
+          <p>Dogs Pinterest App</p>
+          <Route exact path="/" component={Signup} />
+          <Route path="/signup" component={Signup} />
         </div>
       </Router>
     </Provider>,
