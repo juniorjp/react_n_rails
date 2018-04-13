@@ -29,14 +29,15 @@ class SignUp extends Component {
   submit = (values) => {
     console.log(values);
     var body = new FormData();
-    Object.keys(values).forEach(( key ) => {
-      body.append(key, values[ key ]);
+    Object.keys(values.user).forEach(( key ) => {
+      body.append(`user[${key}]`, values.user[ key ]);
     });
-
     console.info('POST', body, values);
-    console.info('This is expected to fail:');
-    fetch(`/users`, {
+    fetch(`/sign_up`, {
       method: 'POST',
+      headers: {
+        "Accept": "application/vnd.api+json; version=1"
+      },
       body: body,
     })
     .catch(error => console.error(error));
@@ -49,19 +50,26 @@ class SignUp extends Component {
         <div className="container">
           <h2>Sign Up</h2>
           <form onSubmit={handleSubmit(this.submit.bind(this))}>
-            <label>First Name</label>
-            <Field name="email"
+            <label>Email</label>
+            <Field name="user[email]"
                    component="input"
                    type="text"
                    placeholder="Email"
             />
-            <Field name="password"
+            <label>Username</label>
+            <Field name="user[username]"
+                   component="input"
+                   type="text"
+                   placeholder="Username"
+            />
+            <label>Password</label>
+            <Field name="user[password]"
                    component="input"
                    type="password"
                    placeholder="Password"
             />
             <Field
-              name="files"
+              name="avatar"
               component={renderDropzoneInput}
             />
             <button type="submit" className="blue" disabled={pristine || submitting}>Sign Up</button>
