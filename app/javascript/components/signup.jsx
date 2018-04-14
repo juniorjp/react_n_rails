@@ -83,7 +83,7 @@ class SignUp extends Component {
                 <div className="input-group">
                   <span className="input-group-addon"><i className="glyphicon glyphicon-lock"></i></span>
 
-                  <Field name="ser[password]"
+                  <Field name="user[password]"
                          component="input"
                          type="password"
                          placeholder="Password"
@@ -109,7 +109,7 @@ class SignUp extends Component {
               </div>
 
             </div>
-            <a href="/sign_in" class="btn btn-primary">Sign In</a>
+            <a href="/sign_in" className="btn btn-primary">Sign In</a>
 
           </form>
         </div>
