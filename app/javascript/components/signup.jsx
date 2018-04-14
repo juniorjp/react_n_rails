@@ -12,7 +12,7 @@ const renderDropzoneInput = (field) => {
         name={field.name}
         onDrop={( filesToUpload, e ) => field.input.onChange(filesToUpload)}
       >
-        <div>Try dropping some files here, or click to select files to upload.</div>
+        <div>Choose an Avatar</div>
       </Dropzone>
       {field.meta.touched &&
       field.meta.error &&
@@ -42,30 +42,71 @@ class SignUp extends Component {
     return (
       <div className="form">
         <div className="container">
-          <h2>Sign Up</h2>
-          <form onSubmit={handleSubmit(this.submit.bind(this))}>
-            <label>Email</label>
-            <Field name="user[email]"
-                   component="input"
-                   type="text"
-                   placeholder="Email"
-            />
-            <label>Username</label>
-            <Field name="user[username]"
-                   component="input"
-                   type="text"
-                   placeholder="Username"
-            />
-            <label>Password</label>
-            <Field name="user[password]"
-                   component="input"
-                   type="password"
-                   placeholder="Password"
-            />
-            <Field
-              name="user[avatar]"
-              component={renderDropzoneInput}
-            />
+          <h2>Sign Upy</h2>
+          <form className="well form-horizontal" onSubmit={handleSubmit(this.submit.bind(this))}>
+            <div className="form-group">
+              <label className="col-md-4 control-label" >Email</label>
+
+              <div className="col-md-4 inputGroupContainer">
+                <div className="input-group">
+                  <span className="input-group-addon"><i className="glyphicon glyphicon-user"></i></span>
+
+                  <Field name="user[email]"
+                         component="input"
+                         type="text"
+                         placeholder="Email"
+                         className="form-control"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="col-md-4 control-label" >Username</label>
+
+              <div className="col-md-4 inputGroupContainer">
+                <div className="input-group">
+                  <span className="input-group-addon"><i className="glyphicon glyphicon-user"></i></span>
+
+                  <Field name="user[username]"
+                         component="input"
+                         type="text"
+                         placeholder="Username"
+                         className="form-control"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="col-md-4 control-label" >Password</label>
+
+              <div className="col-md-4 inputGroupContainer">
+                <div className="input-group">
+                  <span className="input-group-addon"><i className="glyphicon glyphicon-lock"></i></span>
+
+                  <Field name="ser[password]"
+                         component="input"
+                         type="password"
+                         placeholder="Password"
+                         className="form-control"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label className="col-md-4 control-label" >Avatar</label>
+
+              <div className="col-md-4 inputGroupContainer">
+                <div className="input-group">
+                  <span className="input-group-addon"><i className="glyphicon glyphicon-file"></i></span>
+
+                  <Field name="user[avatar]"
+                         component={renderDropzoneInput}
+                  />
+                </div>
+              </div>
+            </div>
+
             <button type="submit" className="blue" disabled={pristine || submitting}>Sign Up</button>
           </form>
         </div>

@@ -58,7 +58,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'rack-cors', '1.0.2'
 gem 'paperclip'
-gem 'bootstrap', '~> 4.0.0'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-bootstrap', '3.3.7' # 4.0.0 caused some UI issues that need to be fixed after upgrading
+end
 
 #API
 gem 'jwt'
