@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "3.4",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "prop-types": "^15.6.1",
     "react": "^16.3.1",
@@ -10,9 +11,9 @@
     "react-dropzone": "^4.2.9",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
-    "react-thunk": "^1.0.0",
     "redux": "^3.7.2",
-    "redux-form": "^7.3.0"
+    "redux-form": "^7.3.0",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "webpack-dev-server": "2.11.2"
