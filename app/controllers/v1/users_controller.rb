@@ -6,35 +6,31 @@ class V1::UsersController < ApplicationController
   end
 
   def create
-     user = User.create(user_params)
+     @user = User.new(user_params)
+     if @user.save!
+       payload = {
+         sub: @user.id,
+         exp: 1.month.from_now.to_i
+       }
 
-     payload = {
-       sub: user.id,
-       exp: 1.month.from_now.to_i
-     }
-
-     token = JWT.encode payload, Rails.application.secrets.secret_key_base, 'HS256'
-     render json: {
-         id: user.id,
-         token: token
-     }
+       @token = JWT.encode payload, Rails.application.secrets.secret_key_base, 'HS256'
+       render :user_info
+     else
+       head :bad_request
+     end
   end
 
   def authenticate
     login = params[:user][:login]
-    user = User.where(["lower(username) = :value OR lower(email) = :value", { value: login.downcase }]).first
-    if user
+    @user = User.where(["lower(username) = :value OR lower(email) = :value", { value: login.downcase }]).first
+    if @user
       payload = {
-          sub: user.id,
+          sub: @user.id,
           exp: 1.month.from_now.to_i
       }
 
-      token = JWT.encode payload, Rails.application.secrets.secret_key_base, 'HS256'
-      render json: {
-          id: user.id,
-          token: token,
-          user: user
-      }
+      @token = JWT.encode payload, Rails.application.secrets.secret_key_base, 'HS256'
+      render :user_info
     else
       head :unauthorized
     end
