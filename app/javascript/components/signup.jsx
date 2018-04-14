@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import Dropzone from 'react-dropzone';
+import { signUpAction } from '../actions/user_actions';
+import { connect } from 'react-redux';
 
 const renderDropzoneInput = (field) => {
   const files = field.input.value;
@@ -28,20 +30,8 @@ const renderDropzoneInput = (field) => {
 class SignUp extends Component {
   submit = (values) => {
     console.log(values);
-    var body = new FormData();
-    Object.keys(values.user).forEach(( key ) => {
-      body.append(`user[${key}]`, values.user[ key ]);
-    });
-    console.info('POST', body, values);
-    fetch(`/sign_up`, {
-      method: 'POST',
-      headers: {
-        "Accept": "application/vnd.api+json; version=1"
-      },
-      body: body,
-    })
-    .catch(error => console.error(error));
-  }
+    this.props.signUpAction(values, this.props.history);
+  };
 
   render(){
     const { handleSubmit, pristine, reset, submitting } = this.props;
@@ -80,6 +70,18 @@ class SignUp extends Component {
   }
 }
 
-export default reduxForm({
+const reduxFormSignup = reduxForm({
   form: 'signup'
 })(SignUp);
+
+function mapStateToProps(state) {
+  return { errorMessage: state.auth.error };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signUpAction: (values, history) => dispatch(signUpAction(values, history))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(reduxFormSignup);
