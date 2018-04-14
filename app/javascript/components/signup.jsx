@@ -30,6 +30,10 @@ const renderDropzoneInput = (field) => {
 class SignUp extends Component {
   submit = (values) => {
     console.log(values);
+    if(Array.isArray(values.user.avatar)){
+      values.user.avatar = values.user.avatar[0]
+    }
+
     this.props.signUpAction(values, this.props.history);
   };
 
@@ -59,7 +63,7 @@ class SignUp extends Component {
                    placeholder="Password"
             />
             <Field
-              name="avatar"
+              name="user[avatar]"
               component={renderDropzoneInput}
             />
             <button type="submit" className="blue" disabled={pristine || submitting}>Sign Up</button>
