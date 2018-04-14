@@ -20,6 +20,26 @@ class V1::UsersController < ApplicationController
      }
   end
 
+  def authenticate
+    login = params[:user][:login]
+    user = User.where(["lower(username) = :value OR lower(email) = :value", { value: login.downcase }]).first
+    if user
+      payload = {
+          sub: user.id,
+          exp: 1.month.from_now.to_i
+      }
+
+      token = JWT.encode payload, Rails.application.secrets.secret_key_base, 'HS256'
+      render json: {
+          id: user.id,
+          token: token,
+          user: user
+      }
+    else
+      head :unauthorized
+    end
+  end
+
   def user_params
     params.require(:user).permit(:password, :email, :username, :avatar)
   end

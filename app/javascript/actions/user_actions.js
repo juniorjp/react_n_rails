@@ -8,14 +8,14 @@ export const userActions = {
   signUpAction
 };
 
-export function signUpAction(values, history) {
+export function signUpAction(values, history, route = '/sign_up') {
   return async (dispatch) => {
       var body = new FormData();
       Object.keys(values.user).forEach(( key ) => {
         body.append(`user[${key}]`, values.user[ key ]);
       });
       console.info('POST', body, values);
-      const response = await fetch(`/sign_up`, {
+      const response = await fetch(`${route}`, {
         method: 'POST',
         headers: {
           "Accept": "application/vnd.api+json; version=1"

@@ -6,6 +6,8 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Signup from '../components/signup';
+import Signin from '../components/signin';
+
 import { reducer as formReducer, } from 'redux-form';
 import authReducer from '../reducers/authentication_reducer';
 
@@ -23,7 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <div>
           <p>Dogs Pinterest App</p>
           <Route exact path="/" component={Signup} />
-          <Route path="/signup" component={Signup} />
+          <Route path="/sign_up" component={Signup} />
+          <Route path="/sign_in" component={Signin} />
         </div>
       </Router>
     </Provider>,

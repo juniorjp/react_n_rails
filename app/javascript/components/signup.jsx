@@ -42,7 +42,7 @@ class SignUp extends Component {
     return (
       <div className="form">
         <div className="container">
-          <h2>Sign Upy</h2>
+          <h2>Sign Up</h2>
           <form className="well form-horizontal" onSubmit={handleSubmit(this.submit.bind(this))}>
             <div className="form-group">
               <label className="col-md-4 control-label" >Email</label>
@@ -104,10 +104,13 @@ class SignUp extends Component {
                          component={renderDropzoneInput}
                   />
                 </div>
-              </div>
-            </div>
+                <button type="submit" className="form-control" disabled={pristine || submitting}>Sign Up</button>
 
-            <button type="submit" className="blue" disabled={pristine || submitting}>Sign Up</button>
+              </div>
+
+            </div>
+            <a href="/sign_in" class="btn btn-primary">Sign In</a>
+
           </form>
         </div>
       </div>
