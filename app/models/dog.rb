@@ -1,7 +1,7 @@
 class Dog < ApplicationRecord
   belongs_to :author, class_name: User.name
-  has_many :users, through: :user_dogs, class_name: User.name
   has_many :user_dogs
+  has_many :users, through: :user_dogs, class_name: User.name
 
   validates :name, presence: true
   validates :avatar, presence: true
