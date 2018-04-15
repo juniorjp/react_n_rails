@@ -5,7 +5,8 @@ export const AUTHENTICATION_ERROR = 'auth_error';
 export const UNAUTHENTICATED = 'unathenticated';
 
 export const userActions = {
-  signUpAction
+  signUpAction,
+  createDogAction
 };
 
 export function signUpAction(values, history, route = '/sign_up') {
@@ -38,6 +39,36 @@ export function signUpAction(values, history, route = '/sign_up') {
       }
 
       history.push('/dashboard');
+
+  };
+}
+
+export function createDogAction(values, history, route = '/dogs') {
+  return async (dispatch, getState) => {
+    var user = getState().auth.user;
+    var body = new FormData();
+    Object.keys(values.dog).forEach(( key ) => {
+      body.append(`dog[${key}]`, values.dog[ key ]);
+    });
+    body.append(`dog[user_ids][]`, [user.id]);
+    console.info('POST', body, values);
+    const response = await fetch(`${route}`, {
+      method: 'POST',
+      headers: {
+        "Accept": "application/vnd.api+json; version=1",
+        "Authorization": user.token
+      },
+      body: body,
+    });
+    console.log(response);
+
+    if (!response.ok) {
+      //Dispatch dogs creation error action
+    } else {
+      history.push('/dashboard');
+
+    }
+
 
   };
 }

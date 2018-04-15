@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Signup from '../components/signup';
 import Signin from '../components/signin';
 import Dashboard from '../components/dashboard';
+import NewDog from '../components/new_dog';
 import protectedResource from '../components/protected';
 
 import {AUTHENTICATED} from '../actions/user_actions';
@@ -39,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <Route path="/sign_up" component={Signup} />
           <Route path="/sign_in" component={Signin} />
           <Route path="/dashboard" component={protectedResource(Dashboard)} />
+          <Route path="/new_dog" component={protectedResource(NewDog)} />
         </div>
       </Router>
     </Provider>,

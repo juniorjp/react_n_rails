@@ -18,7 +18,7 @@ class V1::DogsController < ApplicationController
   end
 
   def dog_params
-    params.require(:dog).permit(:name, :avatar)
+    params.require(:dog).permit(:name, :avatar, user_ids: [])
   end
 
 end
