@@ -7,8 +7,10 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Signup from '../components/signup';
 import Signin from '../components/signin';
-import {AUTHENTICATED} from '../actions/user_actions';
+import Dashboard from '../components/dashboard';
+import protectedResource from '../components/protected';
 
+import {AUTHENTICATED} from '../actions/user_actions';
 
 import { reducer as formReducer, } from 'redux-form';
 import authReducer from '../reducers/authentication_reducer';
@@ -37,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <Route exact path="/" component={Signup} />
           <Route path="/sign_up" component={Signup} />
           <Route path="/sign_in" component={Signin} />
+          <Route path="/dashboard" component={protectedResource(Dashboard)} />
         </div>
       </Router>
     </Provider>,
