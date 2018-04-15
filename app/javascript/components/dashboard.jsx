@@ -56,6 +56,7 @@ class Dashboard extends Component {
                       </div>
                       <div className="options">
                         <Link to="/new_dog" className="btn btn-success btn-lg"><i className="glyphicon glyphicon-plus"></i> Add a dog to wishlist</Link>
+                        <Link to="/users" style={{marginLeft: '10px'}} className="btn btn-primary btn-lg"><i className="glyphicon glyphicon-plus"></i> Check users</Link>
                       </div>
                     </div>
                   </div>
@@ -65,7 +66,6 @@ class Dashboard extends Component {
                       return <Dog key={i} dog={dog}></Dog>
                     })
                   }
-
 
                 </div>
               </div>
