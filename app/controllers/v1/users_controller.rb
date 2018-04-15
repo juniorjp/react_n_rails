@@ -1,8 +1,9 @@
 class V1::UsersController < ApplicationController
+  before_action :authenticate_user, only: [:index]
 
-  def test
-    return head(:bad_request) if current_user.nil?
-    head :no_content
+  def index
+    @users = User.where.not(id: current_user.id).all
+    render :users_info
   end
 
   def create
