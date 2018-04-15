@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Signup from '../components/signup';
 import Signin from '../components/signin';
+import {AUTHENTICATED} from '../actions/user_actions';
+
 
 import { reducer as formReducer, } from 'redux-form';
 import authReducer from '../reducers/authentication_reducer';
@@ -17,6 +19,14 @@ const reducers = combineReducers({
 });
 
 const store = createStore(reducers, applyMiddleware(thunk));
+
+const storedUser = localStorage.getItem('dogs_test_user');
+let user = null;
+if(storedUser) {
+  user =  JSON.parse(storedUser);
+  store.dispatch({ type: AUTHENTICATED });
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(

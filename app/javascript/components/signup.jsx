@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import Dropzone from 'react-dropzone';
 import { signUpAction } from '../actions/user_actions';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const renderDropzoneInput = (field) => {
   const files = field.input.value;
@@ -109,7 +110,7 @@ class SignUp extends Component {
               </div>
 
             </div>
-            <a href="/sign_in" className="btn btn-primary">Sign In</a>
+            <Link to="/sign_in" className="btn btn-primary">Sign In</Link>
 
           </form>
         </div>

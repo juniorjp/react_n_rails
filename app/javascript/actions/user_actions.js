@@ -30,8 +30,9 @@ export function signUpAction(values, history, route = '/sign_up') {
           payload: error
         });
       } else {
+        const data = await response.json();
         dispatch({type: AUTHENTICATED});
-        localStorage.setItem('user', response.token);
+        localStorage.setItem('dogs_test_user', JSON.stringify(data));
 
       }
 
