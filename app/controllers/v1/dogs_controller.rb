@@ -7,9 +7,20 @@ class V1::DogsController < ApplicationController
     @dogs = @user.dogs
     render :dogs_info
   end
+
   def create
     @dog = Dog.new(dog_params)
     @dog.author = current_user
+    if @dog.save
+      render :dog_info
+    else
+      head :bad_request
+    end
+  end
+
+  def add_wishlist
+    @dog = Dog.find(params[:id])
+    @dog.users << current_user
     if @dog.save!
       render :dog_info
     else

@@ -1,5 +1,5 @@
 json.name dog.name
-json.dog_id dog.id
+json.id dog.id
 json.avatar_url dog.avatar.url(:medium)
 
 json.author do
