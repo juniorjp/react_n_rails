@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Dog } from './dog';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -8,6 +9,29 @@ class Dashboard extends Component {
     this.state = {
       myDogs:[]
     };
+  }
+
+  componentDidMount() {
+    fetch("/dogs", {
+      method: 'GET',
+      headers: {
+        "Accept": "application/vnd.api+json; version=1",
+        "Authorization": this.props.user.token
+      }
+    }).then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            myDogs: result.dogs
+          });
+        },
+
+        (error) => {
+          this.setState({
+            myDogs: []
+          });
+        }
+      )
   }
 
   render(){
@@ -31,31 +55,17 @@ class Dashboard extends Component {
                         <label className="text-muted">{user.username}</label>
                       </div>
                       <div className="options">
-                        <Link to="/dogs/new" className="btn btn-success btn-lg"><i className="glyphicon glyphicon-plus"></i> Add a dog to wishlist</Link>
+                        <Link to="/new_dog" className="btn btn-success btn-lg"><i className="glyphicon glyphicon-plus"></i> Add a dog to wishlist</Link>
                       </div>
                     </div>
                   </div>
                   <p>My dogs</p>
                   {
-                    this.state.myDogs.map(function(dog) {
-                      return <Dog dog={dog}></Dog>
+                    this.state.myDogs.map(function(dog, i) {
+                      return <Dog key={i} dog={dog}></Dog>
                     })
                   }
-                  <div className="col-xs-6 col-md-6">
-                    <div className="col-xs-6">
-                      <div className="hero-widget well well-sm">
-                        <img src={user.avatar_url} className="img-thumbnail" />
-                        <div className="text">
-                          <var>Welcome </var>
-                          <label className="text-muted">{user.username}</label>
-                        </div>
-                        <div className="options">
-                          <a href="" className="btn btn-primary btn-lg"><i className="glyphicon glyphicon-plus"></i> Details</a>
-                        </div>
-                      </div>
-                    </div>
 
-                  </div>
 
                 </div>
               </div>
