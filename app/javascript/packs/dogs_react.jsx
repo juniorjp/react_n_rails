@@ -9,6 +9,8 @@ import Signup from '../components/signup';
 import Signin from '../components/signin';
 import Dashboard from '../components/dashboard';
 import NewDog from '../components/new_dog';
+import {Users} from '../components/users';
+import {UserWishlist} from '../components/user_wishlist';
 import protectedResource from '../components/protected';
 
 import {AUTHENTICATED} from '../actions/user_actions';
@@ -41,6 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
           <Route path="/sign_in" component={Signin} />
           <Route path="/dashboard" component={protectedResource(Dashboard)} />
           <Route path="/new_dog" component={protectedResource(NewDog)} />
+          <Route path="/users" component={protectedResource(Users)} />
+          <Route path="/user_wishlist" component={protectedResource(UserWishlist)} />
         </div>
       </Router>
     </Provider>,
