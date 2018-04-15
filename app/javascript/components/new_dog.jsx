@@ -51,12 +51,11 @@ class NewDog extends Component {
                          component={renderDropzoneInput}
                   />
                 </div>
-                <button type="submit" className="form-control" disabled={pristine || submitting}>Sign Up</button>
+                <button type="submit" className="form-control" disabled={pristine || submitting}>Create new dog</button>
 
               </div>
 
             </div>
-            <Link to="/sign_in" className="btn btn-primary">Sign In</Link>
 
           </form>
         </div>
