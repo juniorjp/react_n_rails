@@ -27,8 +27,9 @@ export function signUpAction(values, history, route = '/sign_up') {
       if (!response.ok) {
         dispatch({
           type: AUTHENTICATION_ERROR,
-          payload: error
+          payload: 'authentication error'
         });
+        localStorage.removeItem('dogs_test_user');
       } else {
         const data = await response.json();
         dispatch({type: AUTHENTICATED});
