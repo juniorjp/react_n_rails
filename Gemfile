@@ -69,4 +69,5 @@ end
 gem 'jwt'
 gem 'versionist'
 gem 'unicorn'
+gem 'figaro'
 
