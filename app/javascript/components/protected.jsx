@@ -24,7 +24,7 @@ function protectedResource(WrappedComponent) {
 }
 
 function mapStateToProps(state) {
-  return { authenticated: state.auth.authenticated };
+  return { authenticated: state.auth.authenticated, user: state.auth.user };
 }
 
 const composedHoc = compose(

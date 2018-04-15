@@ -26,9 +26,8 @@ const storedUser = localStorage.getItem('dogs_test_user');
 let user = null;
 if(storedUser) {
   user =  JSON.parse(storedUser);
-  store.dispatch({ type: AUTHENTICATED });
+  store.dispatch({ type: AUTHENTICATED, user: user });
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(

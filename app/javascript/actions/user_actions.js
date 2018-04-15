@@ -32,7 +32,7 @@ export function signUpAction(values, history, route = '/sign_up') {
         localStorage.removeItem('dogs_test_user');
       } else {
         const data = await response.json();
-        dispatch({type: AUTHENTICATED});
+        dispatch({type: AUTHENTICATED, user: data});
         localStorage.setItem('dogs_test_user', JSON.stringify(data));
 
       }
