@@ -9,9 +9,15 @@ function protectedResource(WrappedComponent) {
       super(props);
     }
 
+    componentWillUpdate(nextProps) {
+      if (!nextProps.authenticated) {
+        this.props.history.push('/sign_in');
+      }
+    }
+
     componentWillMount() {
-      if (!this.props.authenticated || !this.props.user) {
-        this.props.history.push('/');
+      if (!this.props.authenticated) {
+        this.props.history.push('/sign_in');
       }
     }
 
@@ -24,7 +30,7 @@ function protectedResource(WrappedComponent) {
 }
 
 function mapStateToProps(state) {
-  return { authenticated: state.auth.authenticated, user: state.auth.user };
+  return { authenticated: state.auth.authenticated, user: state.auth.user || {} };
 }
 
 const composedHoc = compose(
