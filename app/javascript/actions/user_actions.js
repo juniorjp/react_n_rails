@@ -31,14 +31,14 @@ export function signUpAction(values, history, route = '/sign_up') {
           payload: 'authentication error'
         });
         localStorage.removeItem('dogs_test_user');
+        alert('Authentication error');
       } else {
         const data = await response.json();
         dispatch({type: AUTHENTICATED, user: data});
         localStorage.setItem('dogs_test_user', JSON.stringify(data));
-
+        history.push('/dashboard');
       }
 
-      history.push('/dashboard');
 
   };
 }
