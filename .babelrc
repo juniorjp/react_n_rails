@@ -11,6 +11,11 @@
     ],
     "react"
   ],
+  "env": {
+    "test": {
+      "presets": [["env"], "react"]
+    }
+  },
 
   "plugins": [
     "syntax-dynamic-import",
